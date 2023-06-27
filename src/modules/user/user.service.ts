@@ -67,10 +67,15 @@ export class UserService {
   }
 
   async updateUser(
-    user: UserEntity,
+    userId: string,
     userDto: UpdateUserDto,
   ): Promise<CustomResponseInterface> {
-    await this.validateUser(userDto.name);
+    const user = await this.userRepository.getUserById(userId);
+
+    if (userDto.name) {
+      await this.validateUser(userDto.name);
+    }
+
     Object.assign(user, userDto);
 
     await this.userRepository.save(user);

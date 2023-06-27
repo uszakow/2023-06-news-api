@@ -1,5 +1,4 @@
 import { IsNotEmpty, IsString } from 'class-validator';
-import { GetUserDto } from 'src/modules/user/dto/getUser.dto';
 import { COMMON_STATUS_MESSAGES } from 'src/types/statusMessages';
 
 interface Author {

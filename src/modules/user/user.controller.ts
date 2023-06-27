@@ -45,10 +45,10 @@ export class UserController {
   @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
   @UseGuards(AuthGuard)
   async updateCurrentUser(
-    @User() currentUser: UserEntity,
+    @User('id') currentUserId: string,
     @Body() userDto: UpdateUserDto,
   ): Promise<CustomResponseInterface> {
-    return await this.userService.updateUser(currentUser, userDto);
+    return await this.userService.updateUser(currentUserId, userDto);
   }
 
   @Delete()

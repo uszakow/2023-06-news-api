@@ -1,5 +1,4 @@
 import { IsNotEmpty, IsString } from 'class-validator';
-import { GetNewsDto } from 'src/modules/news/dto/getNews.dto';
 import { COMMON_STATUS_MESSAGES } from 'src/types/statusMessages';
 
 interface News {
