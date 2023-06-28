@@ -12,7 +12,7 @@ export class GetNewsDto {
   readonly id: string;
 
   @IsNotEmpty({
-    message: COMMON_STATUS_MESSAGES.ERROR.EMPTY_FIELD('nazwa wiadomości'),
+    message: COMMON_STATUS_MESSAGES.ERROR.EMPTY_FIELD('tytuł wiadomości'),
   })
   @IsString()
   readonly title: string;

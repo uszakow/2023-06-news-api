@@ -3,7 +3,7 @@ import { COMMON_STATUS_MESSAGES } from 'src/types/statusMessages';
 
 export class CreateNewsDto {
   @IsNotEmpty({
-    message: COMMON_STATUS_MESSAGES.ERROR.EMPTY_FIELD('nazwa wiadomości'),
+    message: COMMON_STATUS_MESSAGES.ERROR.EMPTY_FIELD('tytuł wiadomości'),
   })
   @IsString()
   readonly title: string;
