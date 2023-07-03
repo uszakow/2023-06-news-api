@@ -17,7 +17,6 @@ export const USER_STATUS_MESSAGES = {
   },
   ERROR: {
     CREDENTIALS_ARE_NOT_VALID: 'Niepoprawny login lub hasło.',
-    EMPTY_NAME: 'Użytkownik nie może mieć pustą nazwę',
     DATABASE_ERROR_WHILE_DELETE:
       'Nie udało się usunąć użytkownika z bazy danych.',
     DATABASE_ERROR_WHILE_FIND:
@@ -25,6 +24,7 @@ export const USER_STATUS_MESSAGES = {
     DATABASE_ERROR_WHILE_SAVE:
       'Nie udało się zapisać użytkownika do bazy danych.',
     DUPLICATE_USER: 'Użytkownik z taką nazwą już istnieje.',
+    EMPTY_NAME: 'Użytkownik nie może mieć pustą nazwę',
     NOT_AUTHORIZED: 'Użytkownik nie był zalogowany.',
     USER_NOT_FOUND: 'Użytkownik nie był znaleziony.',
   },
