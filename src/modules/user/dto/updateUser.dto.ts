@@ -1,9 +1,13 @@
 import { IsOptional, IsString, MinLength } from 'class-validator';
-import { COMMON_STATUS_MESSAGES } from 'src/types/statusMessages';
+import {
+  COMMON_STATUS_MESSAGES,
+  USER_STATUS_MESSAGES,
+} from 'src/types/statusMessages';
 
 export class UpdateUserDto {
   @IsOptional()
   @IsString()
+  @MinLength(1, { message: USER_STATUS_MESSAGES.ERROR.EMPTY_NAME })
   readonly name: string;
 
   @IsOptional()

@@ -17,6 +17,7 @@ export const USER_STATUS_MESSAGES = {
   },
   ERROR: {
     CREDENTIALS_ARE_NOT_VALID: 'Niepoprawny login lub hasło.',
+    EMPTY_NAME: 'Użytkownik nie może mieć pustą nazwę',
     DATABASE_ERROR_WHILE_DELETE:
       'Nie udało się usunąć użytkownika z bazy danych.',
     DATABASE_ERROR_WHILE_FIND:
