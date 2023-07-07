@@ -1,4 +1,4 @@
-import { HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { NewsRepository } from './news.repository';
 import { CreateNewsDto } from './dto/createNews.dto';
 import { UserEntity } from 'src/modules/user/user.entity';
@@ -35,6 +35,13 @@ export class NewsService {
 
   async getNews(newsId: string): Promise<GetNewsDto> {
     const news = await this.newsRepository.getNews(newsId);
+
+    if (!news) {
+      throw new HttpException(
+        NEWS_STATUS_MESSAGES.ERROR.NOT_FOUND,
+        HttpStatus.NOT_FOUND,
+      );
+    }
 
     return this.buildNewsResponse(news);
   }
