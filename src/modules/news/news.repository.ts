@@ -40,7 +40,10 @@ export class NewsRepository {
 
   async getAllNews(): Promise<NewsEntity[]> {
     try {
-      return await this.repository.find({ relations: ['author'] });
+      return await this.repository.find({
+        relations: ['author'],
+        order: { createdAt: 'DESC' },
+      });
     } catch (error) {
       throw new HttpException(
         NEWS_STATUS_MESSAGES.ERROR.DATABASE_ERROR_WHILE_FIND,

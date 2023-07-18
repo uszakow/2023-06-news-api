@@ -6,10 +6,15 @@ export const checkNewsPermission = (
   news: NewsEntity,
   currentUserId: string,
 ): void => {
-  if (!news || news.author?.id !== currentUserId) {
+  if (!news) {
     throw new HttpException(
-      NEWS_STATUS_MESSAGES.ERROR.NEWS_NOT_FOUND,
+      NEWS_STATUS_MESSAGES.ERROR.NOT_FOUND,
       HttpStatus.NOT_FOUND,
+    );
+  } else if (news.author?.id !== currentUserId) {
+    throw new HttpException(
+      NEWS_STATUS_MESSAGES.ERROR.NOT_PERMITTED,
+      HttpStatus.FORBIDDEN,
     );
   }
 };

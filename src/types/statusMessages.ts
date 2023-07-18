@@ -40,7 +40,7 @@ export const NEWS_STATUS_MESSAGES = {
     DATABASE_ERROR_WHILE_FIND: 'Błąd bazy danych przy wyszukiwaniu wiadomości.',
     DATABASE_ERROR_WHILE_SAVE:
       'Nie udało się zapisać wiadomość do bazy danych.',
-    NEWS_NOT_FOUND:
-      'Wiadomość nie była znaleziona albo nie masz uprawnień do jej edycji',
+    NOT_FOUND: 'Wiadomość nie była znaleziona',
+    NOT_PERMITTED: 'Tylko autor może edytować lub usuwać wiadomość',
   },
 };
