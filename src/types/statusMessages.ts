@@ -44,3 +44,18 @@ export const NEWS_STATUS_MESSAGES = {
     NOT_PERMITTED: 'Tylko autor może edytować lub usuwać wiadomość',
   },
 };
+
+export const COMMENT_STATUS_MESSAGES = {
+  SUCCESS: {
+    DELETE: 'Komentarz został usunięty.',
+  },
+  ERROR: {
+    DATABASE_ERROR_WHILE_DELETE:
+      'Nie udało się usunąć komentarzy z bazy danych.',
+    DATABASE_ERROR_WHILE_FIND: 'Błąd bazy danych przy wyszukiwaniu komentarzy.',
+    DATABASE_ERROR_WHILE_SAVE:
+      'Nie udało się zapisać komentarza do bazy danych.',
+    NOT_FOUND: 'Komentarz nie była znaleziona',
+    NOT_PERMITTED: 'Tylko autor może edytować lub usuwać komentarz',
+  },
+};

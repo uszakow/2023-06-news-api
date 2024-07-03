@@ -66,6 +66,11 @@ export class UserService {
     };
   }
 
+  async getAllUsers() {
+    const users = await this.userRepository.getAllUsers();
+    return users;
+  }
+
   async updateUser(
     userId: string,
     userDto: UpdateUserDto,

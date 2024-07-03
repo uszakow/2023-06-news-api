@@ -5,6 +5,7 @@ const config: SqliteConnectionOptions = {
   database: 'news_api_database.sqlite',
   entities: [__dirname + '/**/*.entity{.ts,.js}'],
   synchronize: true,
+  logging: true,
 };
 
 export default config;

@@ -31,6 +31,7 @@ export class UserRepository {
     try {
       return await this.repository.delete(userId);
     } catch (error) {
+      console.log(error);
       throw new HttpException(
         USER_STATUS_MESSAGES.ERROR.DATABASE_ERROR_WHILE_DELETE,
         HttpStatus.INTERNAL_SERVER_ERROR,
@@ -74,6 +75,19 @@ export class UserRepository {
         where: { id },
         relations: ['news'],
       });
+    } catch (error) {
+      throw new HttpException(
+        USER_STATUS_MESSAGES.ERROR.DATABASE_ERROR_WHILE_FIND,
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
+
+  async getAllUsers() {
+    try {
+      const users = await this.repository.find({ relations: ['news'] });
+      console.log(users);
+      return users;
     } catch (error) {
       throw new HttpException(
         USER_STATUS_MESSAGES.ERROR.DATABASE_ERROR_WHILE_FIND,

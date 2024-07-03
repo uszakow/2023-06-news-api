@@ -41,6 +41,11 @@ export class UserController {
     return this.userService.getCurrentUser(currentUserId);
   }
 
+  @Get('/all')
+  async getAllUsers() {
+    return this.userService.getAllUsers();
+  }
+
   @Put()
   @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
   @UseGuards(AuthGuard)

@@ -5,9 +5,15 @@ import { UserModule } from './modules/user/user.module';
 import { AuthMiddleware } from './middlewares/auth.middleware';
 import { NewsModule } from './modules/news/news.module';
 import { DelayMiddleware } from './middlewares/delay.middleware';
+import { CommentModule } from './modules/comment/comment.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(ormconfig), UserModule, NewsModule],
+  imports: [
+    TypeOrmModule.forRoot(ormconfig),
+    UserModule,
+    NewsModule,
+    CommentModule,
+  ],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {

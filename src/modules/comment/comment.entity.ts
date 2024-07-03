@@ -8,15 +8,12 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { UserEntity } from '../user/user.entity';
-import { CommentEntity } from '../comment/comment.entity';
+import { NewsEntity } from '../news/news.entity';
 
-@Entity({ name: 'news' })
-export class NewsEntity {
+@Entity({ name: 'comment' })
+export class CommentEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
-
-  @Column()
-  title: string;
 
   @Column()
   content: string;
@@ -27,9 +24,9 @@ export class NewsEntity {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @ManyToOne(() => UserEntity, (user) => user.news, { onDelete: 'CASCADE' })
+  @ManyToOne(() => UserEntity, (author) => author.comment)
   author: UserEntity;
 
-  @OneToMany(() => CommentEntity, (comment) => comment.news)
-  comment: CommentEntity[];
+  @ManyToOne(() => NewsEntity, (news) => news.comment)
+  news: NewsEntity;
 }

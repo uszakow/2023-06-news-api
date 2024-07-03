@@ -33,7 +33,7 @@ export class NewsService {
     return news.map((item) => this.buildNewsResponse(item));
   }
 
-  async getNews(newsId: string): Promise<GetNewsDto> {
+  async getNews(newsId: string): Promise<NewsEntity> {
     const news = await this.newsRepository.getNews(newsId);
 
     if (!news) {
@@ -43,7 +43,7 @@ export class NewsService {
       );
     }
 
-    return this.buildNewsResponse(news);
+    return news;
   }
 
   async updateNews(

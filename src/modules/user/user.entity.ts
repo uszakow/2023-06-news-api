@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { genSalt, hash } from 'bcrypt';
 import { NewsEntity } from '../news/news.entity';
+import { CommentEntity } from '../comment/comment.entity';
 
 @Entity({ name: 'users' })
 export class UserEntity {
@@ -22,6 +23,9 @@ export class UserEntity {
 
   @OneToMany(() => NewsEntity, (news) => news.author)
   news: NewsEntity[];
+
+  @OneToMany(() => CommentEntity, (commnet) => commnet.author)
+  comment: CommentEntity[];
 
   @BeforeInsert()
   @BeforeUpdate()
