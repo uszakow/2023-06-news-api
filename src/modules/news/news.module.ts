@@ -9,5 +9,6 @@ import { NewsRepository } from './news.repository';
   imports: [TypeOrmModule.forFeature([NewsEntity])],
   controllers: [NewsController],
   providers: [NewsService, NewsRepository],
+  exports: [NewsRepository],
 })
 export class NewsModule {}

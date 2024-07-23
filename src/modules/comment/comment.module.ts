@@ -7,9 +7,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { NewsEntity } from '../news/news.entity';
 import { CommentRepository } from './comment.repository';
 import { NewsService } from '../news/news.service';
+import { NewsModule } from '../news/news.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CommentEntity])],
+  imports: [TypeOrmModule.forFeature([CommentEntity]), NewsModule],
   controllers: [CommentController],
   providers: [CommentService, NewsService, CommentRepository],
 })

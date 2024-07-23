@@ -1,11 +1,11 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UserEntity } from '../user/user.entity';
 import { CreateCommentDto } from './dto/createComment.dto';
-import { NewsRepository } from '../news/news.repository';
 import { CommentEntity } from './comment.entity';
 import { CommentRepository } from './comment.repository';
-import { NEWS_STATUS_MESSAGES } from 'src/types/statusMessages';
 import { NewsService } from '../news/news.service';
+import { PageDto } from 'src/common/dtos/page.dto';
+import { PageOptionsDto } from 'src/common/dtos/page-options.dto';
 
 @Injectable()
 export class CommentService {
@@ -19,14 +19,9 @@ export class CommentService {
     createCommentDto: CreateCommentDto,
     newsId: string,
   ) {
+    console.log(currentUser);
     const news = await this.newsService.getNews(newsId);
-    // const news = await this.newsRepository.getNews(newsId);
-    // if (!news) {
-    //   throw new HttpException(
-    //     NEWS_STATUS_MESSAGES.ERROR.NOT_FOUND,
-    //     HttpStatus.NOT_FOUND,
-    //   );
-    // }
+
     const comment = new CommentEntity();
     Object.assign(comment, createCommentDto);
     comment.author = currentUser;
@@ -36,8 +31,14 @@ export class CommentService {
     return createdNews;
   }
 
-  async getAllComent() {
-    return this.commentRepository.getAllComment();
+  async getAllComent(
+    pageOptionsDto: PageOptionsDto,
+  ): Promise<PageDto<CommentEntity>> {
+    return this.commentRepository.getAllComment(pageOptionsDto);
+  }
+
+  async getAllUserComment(currentUser: UserEntity) {
+    return this.commentRepository.getAllUserComment(currentUser.id);
   }
 
   getCommentById() {

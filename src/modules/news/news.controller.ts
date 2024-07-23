@@ -18,6 +18,7 @@ import { CreateNewsDto } from './dto/createNews.dto';
 import { GetNewsDto } from './dto/getNews.dto';
 import { UpdateNewsDto } from './dto/updateNews.dto';
 import { CustomResponseInterface } from 'src/types/customResponse.interface';
+import { plainToInstance } from 'class-transformer';
 
 @Controller('news')
 export class NewsController {
@@ -40,7 +41,9 @@ export class NewsController {
 
   @Get('/:newsId')
   async getNews(@Param('newsId') newsId: string): Promise<GetNewsDto> {
-    return await this.newsService.getNews(newsId);
+    const news = await this.newsService.getNews(newsId);
+    const newsDto = plainToInstance(GetNewsDto, news);
+    return newsDto;
   }
 
   @Put('/:newsId')
@@ -57,6 +60,8 @@ export class NewsController {
       currentUserId,
     );
   }
+
+  // szukaj wszystkich komentarzy dla danego news - zrób pagination
 
   @Delete('/:newsId')
   @UseGuards(AuthGuard)
