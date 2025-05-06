@@ -10,14 +10,15 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { NewsService } from './news.service';
-import { AuthGuard } from 'src/guards/auth.guard';
 import { User } from 'src/decorators/user.decorator';
+import { AuthGuard } from 'src/guards/auth.guard';
+import { ICustomResponse } from 'src/types/customResponse.interface';
+
 import { UserEntity } from '../user/user.entity';
 import { CreateNewsDto } from './dto/createNews.dto';
 import { GetNewsDto } from './dto/getNews.dto';
 import { UpdateNewsDto } from './dto/updateNews.dto';
-import { CustomResponseInterface } from 'src/types/customResponse.interface';
+import { NewsService } from './news.service';
 
 @Controller('news')
 export class NewsController {
@@ -63,7 +64,7 @@ export class NewsController {
   async deleteNews(
     @User('id') currentUserId: string,
     @Param('newsId') newsId: string,
-  ): Promise<CustomResponseInterface> {
+  ): Promise<ICustomResponse> {
     return await this.newsService.deleteNews(newsId, currentUserId);
   }
 }

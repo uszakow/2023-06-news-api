@@ -5,15 +5,13 @@ import {
   HttpStatus,
   Injectable,
 } from '@nestjs/common';
-import { ExpressRequestInterface } from 'src/types/expressRequest.interface';
+import { IExpressRequest } from 'src/types/expressRequest.interface';
 import { USER_STATUS_MESSAGES } from 'src/types/statusMessages';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
-    const request = context
-      .switchToHttp()
-      .getRequest<ExpressRequestInterface>();
+    const request = context.switchToHttp().getRequest<IExpressRequest>();
 
     if (!request.user) {
       throw new HttpException(

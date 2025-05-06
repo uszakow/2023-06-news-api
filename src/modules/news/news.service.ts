@@ -1,13 +1,14 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { NewsRepository } from './news.repository';
-import { CreateNewsDto } from './dto/createNews.dto';
-import { UserEntity } from 'src/modules/user/user.entity';
-import { GetNewsDto } from './dto/getNews.dto';
-import { NewsEntity } from './news.entity';
-import { UpdateNewsDto } from './dto/updateNews.dto';
 import { checkNewsPermission } from 'src/helpers/checkNewsPermission';
-import { CustomResponseInterface } from 'src/types/customResponse.interface';
+import { UserEntity } from 'src/modules/user/user.entity';
+import { ICustomResponse } from 'src/types/customResponse.interface';
 import { NEWS_STATUS_MESSAGES } from 'src/types/statusMessages';
+
+import { CreateNewsDto } from './dto/createNews.dto';
+import { GetNewsDto } from './dto/getNews.dto';
+import { UpdateNewsDto } from './dto/updateNews.dto';
+import { NewsEntity } from './news.entity';
+import { NewsRepository } from './news.repository';
 
 @Injectable()
 export class NewsService {
@@ -63,7 +64,7 @@ export class NewsService {
   async deleteNews(
     newsId: string,
     currentUserId: string,
-  ): Promise<CustomResponseInterface> {
+  ): Promise<ICustomResponse> {
     const news = await this.newsRepository.getNews(newsId);
     checkNewsPermission(news, currentUserId);
 

@@ -1,9 +1,10 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserEntity } from './user.entity';
-import { DeleteResult, ObjectLiteral, Repository } from 'typeorm';
-import { USER_STATUS_MESSAGES } from 'src/types/statusMessages';
 import { checkEmptyFields } from 'src/helpers/checkEmptyFields';
+import { USER_STATUS_MESSAGES } from 'src/types/statusMessages';
+import { DeleteResult, ObjectLiteral, Repository } from 'typeorm';
+
+import { UserEntity } from './user.entity';
 
 @Injectable()
 export class UserRepository {

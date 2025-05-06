@@ -3,13 +3,13 @@ import { COMMON_STATUS_MESSAGES } from 'src/types/statusMessages';
 
 export class UserDto {
   @IsNotEmpty({
-    message: COMMON_STATUS_MESSAGES.ERROR.EMPTY_FIELD('nazwa użytkownika'),
+    message: COMMON_STATUS_MESSAGES.ERROR.emptyField('nazwa użytkownika'),
   })
   @IsString()
   readonly name: string;
 
-  @MinLength(4, { message: COMMON_STATUS_MESSAGES.ERROR.TOO_SHORT_PASSWORD(4) })
-  @IsNotEmpty({ message: COMMON_STATUS_MESSAGES.ERROR.EMPTY_FIELD('hasło') })
+  @MinLength(4, { message: COMMON_STATUS_MESSAGES.ERROR.tooShortPassword(4) })
+  @IsNotEmpty({ message: COMMON_STATUS_MESSAGES.ERROR.emptyField('hasło') })
   @IsString()
   readonly password: string;
 }

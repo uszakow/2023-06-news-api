@@ -1,4 +1,4 @@
-export interface CustomResponseInterface {
+export interface ICustomResponse {
   statusCode?: number;
   message: string;
 }

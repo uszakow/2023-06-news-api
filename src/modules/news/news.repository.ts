@@ -1,9 +1,10 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { NewsEntity } from './news.entity';
-import { DeleteResult, Repository } from 'typeorm';
-import { NEWS_STATUS_MESSAGES } from 'src/types/statusMessages';
 import { checkEmptyFields } from 'src/helpers/checkEmptyFields';
+import { NEWS_STATUS_MESSAGES } from 'src/types/statusMessages';
+import { DeleteResult, Repository } from 'typeorm';
+
+import { NewsEntity } from './news.entity';
 
 @Injectable()
 export class NewsRepository {

@@ -12,6 +12,6 @@ export class UpdateUserDto {
 
   @IsOptional()
   @IsString()
-  @MinLength(4, { message: COMMON_STATUS_MESSAGES.ERROR.TOO_SHORT_PASSWORD(4) })
+  @MinLength(4, { message: COMMON_STATUS_MESSAGES.ERROR.tooShortPassword(4) })
   readonly password: string;
 }

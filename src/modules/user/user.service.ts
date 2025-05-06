@@ -1,21 +1,22 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
+import { CONST } from 'src/constants';
+import { ICustomResponse } from 'src/types/customResponse.interface';
+import { USER_STATUS_MESSAGES } from 'src/types/statusMessages';
+
+import { GetUserDto } from './dto/getUser.dto';
+import { UpdateUserDto } from './dto/updateUser.dto';
+import { UserDto } from './dto/user.dto';
+import { UserTokenDto } from './dto/userToken.dto';
 import { UserEntity } from './user.entity';
 import { UserRepository } from './user.repository';
-import { UserDto } from './dto/user.dto';
-import { USER_STATUS_MESSAGES } from 'src/types/statusMessages';
-import { CONST } from 'src/constants';
-import { UpdateUserDto } from './dto/updateUser.dto';
-import { GetUserDto } from './dto/getUser.dto';
-import { UserTokenDto } from './dto/userToken.dto';
-import { CustomResponseInterface } from 'src/types/customResponse.interface';
 
 @Injectable()
 export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
-  async createUser(userDto: UserDto): Promise<CustomResponseInterface> {
+  async createUser(userDto: UserDto): Promise<ICustomResponse> {
     const newUser = new UserEntity();
 
     await this.validateUser(userDto.name);
@@ -69,7 +70,7 @@ export class UserService {
   async updateUser(
     userId: string,
     userDto: UpdateUserDto,
-  ): Promise<CustomResponseInterface> {
+  ): Promise<ICustomResponse> {
     const user = await this.userRepository.getUserById(userId);
 
     if (userDto.name) {
@@ -86,7 +87,7 @@ export class UserService {
     };
   }
 
-  async deleteUser(userId: string): Promise<CustomResponseInterface> {
+  async deleteUser(userId: string): Promise<ICustomResponse> {
     await this.userRepository.delete(userId);
 
     return {

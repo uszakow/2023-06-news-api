@@ -1,3 +1,4 @@
+import { genSalt, hash } from 'bcrypt';
 import {
   BeforeInsert,
   BeforeUpdate,
@@ -6,7 +7,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { genSalt, hash } from 'bcrypt';
+
 import { NewsEntity } from '../news/news.entity';
 
 @Entity({ name: 'users' })
@@ -25,7 +26,7 @@ export class UserEntity {
 
   @BeforeInsert()
   @BeforeUpdate()
-  async hashPassword() {
+  async hashPassword(): Promise<void> {
     if (this.password) {
       const saltRounds = 10;
       const salt = await genSalt(saltRounds);

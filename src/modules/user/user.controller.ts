@@ -9,15 +9,15 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { UserService } from './user.service';
-import { CustomResponseInterface } from 'src/types/customResponse.interface';
-import { UserTokenDto } from './dto/userToken.dto';
-import { GetUserDto } from './dto/getUser.dto';
 import { User } from 'src/decorators/user.decorator';
-import { UserEntity } from './user.entity';
 import { AuthGuard } from 'src/guards/auth.guard';
-import { UserDto } from './dto/user.dto';
+import { ICustomResponse } from 'src/types/customResponse.interface';
+
+import { GetUserDto } from './dto/getUser.dto';
 import { UpdateUserDto } from './dto/updateUser.dto';
+import { UserDto } from './dto/user.dto';
+import { UserTokenDto } from './dto/userToken.dto';
+import { UserService } from './user.service';
 
 @Controller('user')
 export class UserController {
@@ -25,7 +25,7 @@ export class UserController {
 
   @Post()
   @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
-  async createUser(@Body() userDto: UserDto): Promise<CustomResponseInterface> {
+  async createUser(@Body() userDto: UserDto): Promise<ICustomResponse> {
     return await this.userService.createUser(userDto);
   }
 
@@ -47,7 +47,7 @@ export class UserController {
   async updateCurrentUser(
     @User('id') currentUserId: string,
     @Body() userDto: UpdateUserDto,
-  ): Promise<CustomResponseInterface> {
+  ): Promise<ICustomResponse> {
     return await this.userService.updateUser(currentUserId, userDto);
   }
 
@@ -55,7 +55,7 @@ export class UserController {
   @UseGuards(AuthGuard)
   async deleteUser(
     @User('id') currentUserId: string,
-  ): Promise<CustomResponseInterface> {
+  ): Promise<ICustomResponse> {
     return await this.userService.deleteUser(currentUserId);
   }
 }

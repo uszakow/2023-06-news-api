@@ -1,30 +1,30 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 import { COMMON_STATUS_MESSAGES } from 'src/types/statusMessages';
 
-interface Author {
+interface IAuthor {
   id: string;
   name: string;
 }
 
 export class GetNewsDto {
-  @IsNotEmpty({ message: COMMON_STATUS_MESSAGES.ERROR.EMPTY_FIELD('id') })
+  @IsNotEmpty({ message: COMMON_STATUS_MESSAGES.ERROR.emptyField('id') })
   @IsString()
   readonly id: string;
 
   @IsNotEmpty({
-    message: COMMON_STATUS_MESSAGES.ERROR.EMPTY_FIELD('tytuł wiadomości'),
+    message: COMMON_STATUS_MESSAGES.ERROR.emptyField('tytuł wiadomości'),
   })
   @IsString()
   readonly title: string;
 
   @IsNotEmpty({
-    message: COMMON_STATUS_MESSAGES.ERROR.EMPTY_FIELD('treść wiadomości'),
+    message: COMMON_STATUS_MESSAGES.ERROR.emptyField('treść wiadomości'),
   })
   @IsString()
   readonly content: string;
 
   @IsNotEmpty({
-    message: COMMON_STATUS_MESSAGES.ERROR.EMPTY_FIELD('autor'),
+    message: COMMON_STATUS_MESSAGES.ERROR.emptyField('autor'),
   })
-  readonly author: Author;
+  readonly author: IAuthor;
 }

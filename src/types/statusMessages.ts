@@ -1,10 +1,10 @@
 export const COMMON_STATUS_MESSAGES = {
   ERROR: {
-    EMPTY_FIELD: (fieldName?: string) =>
+    emptyField: (fieldName?: string): string =>
       fieldName
         ? `Pole "${fieldName}" nie może być puste.`
         : 'To pole nie może być puste.',
-    TOO_SHORT_PASSWORD: (length: number) =>
+    tooShortPassword: (length: number): string =>
       `Długość hasła ma być ${length} lub więcej.`,
   },
 };

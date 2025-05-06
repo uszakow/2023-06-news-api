@@ -1,18 +1,23 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
-import { Response, NextFunction } from 'express';
+import { NextFunction, Response } from 'express';
 import { verify } from 'jsonwebtoken';
 import { CONST } from 'src/constants';
-import { ExpressRequestInterface } from 'src/types/expressRequest.interface';
 import { UserRepository } from 'src/modules/user/user.repository';
+import { IExpressRequest } from 'src/types/expressRequest.interface';
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
   constructor(private readonly userRepository: UserRepository) {}
 
-  async use(req: ExpressRequestInterface, res: Response, next: NextFunction) {
+  async use(
+    req: IExpressRequest,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> {
     if (!req.headers.authorization) {
       req.user = null;
       next();
+
       return;
     }
 

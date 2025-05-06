@@ -5,14 +5,14 @@ export class UpdateNewsDto {
   @IsOptional()
   @IsString()
   @MinLength(1, {
-    message: COMMON_STATUS_MESSAGES.ERROR.EMPTY_FIELD('tytuł wiadomości'),
+    message: COMMON_STATUS_MESSAGES.ERROR.emptyField('tytuł wiadomości'),
   })
   readonly title: string;
 
   @IsOptional()
   @IsString()
   @MinLength(1, {
-    message: COMMON_STATUS_MESSAGES.ERROR.EMPTY_FIELD('treść wiadomości'),
+    message: COMMON_STATUS_MESSAGES.ERROR.emptyField('treść wiadomości'),
   })
   readonly content: string;
 }
